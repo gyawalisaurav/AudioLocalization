@@ -4,7 +4,7 @@ function [time_vct, IR] = GetRIR()
     fs1 = 1;
     fs2 = 22050;
     avg = 3;
-    dev = 0;
+    dev = [];
     in_ch = 1;
     out_ch = 1;
 

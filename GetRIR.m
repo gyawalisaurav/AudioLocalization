@@ -73,17 +73,14 @@ function [time_vct, IR] = GetRIR()
      end
      %figure;plot(multi_IR);
     end
-    ms = fs/1000;
+    ms = round(fs/1000);
 
-    %  [null,latency] = max(IR(ms:end,in_ch));
-    %  latency = latency+ms;
-    %  IR = IR(latency+5:(T*fs)-latency-5,:);
+    [~,latency] = max(IR(ms:end,in_ch));
+    latency = latency+ms;
+    IR = IR(latency+5:(T*fs)-latency-5,:);
 
 
-     %if get(handles.polar_check,'Value') ==0
-       IR = IR./(1.1.*max(max(abs(IR))));
-    % end
-
+    IR = IR./(1.1.*max(max(abs(IR))));
 
     len = size(IR,1);
     delta_t = 1/fs;

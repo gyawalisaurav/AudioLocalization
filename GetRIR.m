@@ -1,4 +1,5 @@
 function [time_vct, IR, Y] = GetRIR()
+    InitializePsychSound;
     FS = 44100;
     SIG_LEN = 1;
     FS1 = 1;

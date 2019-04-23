@@ -1,6 +1,7 @@
-[t, ir] = GetRIR();
+[t, ir, z] = GetRIR();
 %[da, db, rt] = getDecayFit(t, ir);
-
+[f,g] = histcounts(abs(z(1:length(z)/2)));
+sd = std(f)
 [t_bins, d_bins] = getTimeBins(t, ir);
 figure;
 plot(d_bins);

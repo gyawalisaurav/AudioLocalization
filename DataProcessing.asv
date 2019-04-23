@@ -1,10 +1,40 @@
-[t, ir, z] = GetRIR();
-%[da, db, rt] = getDecayFit(t, ir);
-[f,g] = histcounts(abs(z(1:length(z)/2)));
-sd = std(f)
-[t_bins, d_bins] = getTimeBins(t, ir);
-figure;
-plot(d_bins);
+data = getDataMatrix();
+
+
+function getDataMatrix()
+    NUM_SAMPLES = 2;
+    [filenames, roomnames] = getFilenames();
+    NUM_ROOMS = length(filenames);
+   
+
+    
+    for i = 1:NUM_ROOMS
+        load(filenames(i), 'room_samples');
+        as = zeros(NUM_SAMPLES);
+        bs = zeros(NUM_SAMPLES);
+        rs = zeros(NUM_SAMPLES);
+        stds = zeros(NUM_SAMPLES);
+        for j = 1:NUM_SAMPLES
+            [a, b, r] = getDecayFit(room_samples(j).t, room_samples(j).t);
+            std = 
+            
+            
+            as
+        end
+    end
+    
+end
+function [fnames, rnames] = getFilenames()
+    files = dir(fullfile(pwd,'*.mat'))
+    num = length(files);
+    
+    fnames = string(num);
+    rnames = string(num);
+    for i = 1:length(files)
+        fnames(i) = files(i).name;
+        rnames(i) = extractBetween(fnames(i), 1, strlength(fnames(i)) -4);
+    end
+end
 
 function [a, b, r] = getDecayFit(t, impulse_response)
     DECAYFIT_MEDIANS = 1000;

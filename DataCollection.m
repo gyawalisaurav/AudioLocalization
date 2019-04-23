@@ -1,4 +1,4 @@
-NUM_SAMPLES = 2;
+NUM_SAMPLES = 10;
 room_name = input('Enter Room Name:', 's');
 room_name = [room_name '.mat'];
 room_samples = [];

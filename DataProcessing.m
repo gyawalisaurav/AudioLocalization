@@ -1,7 +1,7 @@
 data = getDataMatrix();
 
 function data = getDataMatrix()
-    NUM_SAMPLES = 2;
+    NUM_SAMPLES = 10;
     [filenames, roomnames] = getFilenames();
     NUM_ROOMS = length(filenames);
   

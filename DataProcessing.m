@@ -1,6 +1,11 @@
-data = getDataMatrix();
-
-function data = getDataMatrix()
+% [data, dict] = getDataMatrix();
+[t, ir, ~] = GetRIR();
+[a,b,r] = getDecayFit(t,ir);
+[f,~] = histcounts(abs(z(1:round(length(z)/2))));
+sd = std(f);   
+test = trainedModel.predictFcn([a,b,r,sd])
+dict
+function [data, dict] = getDataMatrix()
     NUM_SAMPLES = 10;
     [filenames, roomnames] = getFilenames();
     NUM_ROOMS = length(filenames);
@@ -9,7 +14,7 @@ function data = getDataMatrix()
     comb_b = [];
     comb_r = [];
     comb_sd = [];
-    comb_rnm = [];
+    comb_rid = [];
     
     for i = 1:NUM_ROOMS
         load(filenames(i), 'room_samples');
@@ -17,7 +22,7 @@ function data = getDataMatrix()
         bs = zeros(NUM_SAMPLES, 1);
         rs = zeros(NUM_SAMPLES, 1);
         sds = zeros(NUM_SAMPLES, 1);
-        rnames = string(NUM_SAMPLES);
+        rids = zeros(NUM_SAMPLES, 1);
         
         for j = 1:NUM_SAMPLES
             [a, b, r] = getDecayFit(room_samples(j).t, room_samples(j).ir);
@@ -29,18 +34,18 @@ function data = getDataMatrix()
             bs(j) = b;
             rs(j) = r;
             sds(j) = sd;
-            rnames(j) = roomnames(i);
+            rids(j) = i;
         end
         
         comb_a = [comb_a; as];
         comb_b = [comb_b; bs];
         comb_r = [comb_r; rs];
         comb_sd = [comb_sd; sds];
-        comb_rnm = [comb_rnm; transpose(rnames)];
+        comb_rid = [comb_rid; rids];
     end
     
-    
-    data = [comb_rnm, comb_a, comb_b, comb_r, comb_sd];
+    data = [comb_rid, comb_a, comb_b, comb_r, comb_sd];
+    dict = roomnames;
 end
 
 function [fnames, rnames] = getFilenames()

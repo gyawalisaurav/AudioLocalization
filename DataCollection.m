@@ -9,6 +9,7 @@ for i = 1:NUM_SAMPLES
     data.pose_y = input('Enter Pose y coordinate:', 's');
     [data.t, data.ir, data.z] = GetRIR();
     room_samples = [room_samples, data];
+    disp(i);
 end
 
 save(room_name, 'room_samples');

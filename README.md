@@ -8,6 +8,7 @@ without any arguments to generate the room impulse response. Additionally it
 returns the time vector for the impulse response and also the Discrete
 Fourier Transform of the raw audio input. Here is an example call to this
 funtion:
+
 	[time_vector, RIR, fourier_transform] = GetRIR();
 
 DataCollection file asks for the room name and gathers the specified number of

@@ -1,8 +1,4 @@
 % [data, dict] = getDataMatrix();
-[t, ir, ~] = GetRIR();
-[a,b,r] = getDecayFit(t,ir);
-[f,~] = histcounts(abs(z(1:round(length(z)/2))));
-sd = std(f);
 
 function [data, dict] = getDataMatrix()
     NUM_SAMPLES = 10;

@@ -1,3 +1,8 @@
+# Sound Based Localization for Indoor Robots
+
+All the code and the datasets are available at the following repository:
+https://github.com/gyawalisaurav/AudioLocalization
+
 The repository contains three matlab files:
 - GetRIR.m
 - DataCollection.m
@@ -12,13 +17,14 @@ funtion:
 	[time_vector, RIR, fourier_transform] = GetRIR();
 
 DataCollection file asks for the room name and gathers the specified number of
-RIR samples. This sample is stored a matlab matrix and later saved as a file
+RIR samples. This sample is stored as matlab matrix and later saved as a file
 that can be collected by matlab, python or many other tools. It can simply be
 called without any arguments.
 
 DataProcessing file searches for any mat files in the directory and processes
 the impulse responses stored in the mat files. It extracts important features
-from the data and saves it as a matlab variable.
+from the data as well and creates a combined feature and labels matrix that can
+be fed into any machine learning framework.
 
 After the variable with features is set in the workspace, the classification 
 learner app in matlab can be used to train a SVM. The room values/labels should
